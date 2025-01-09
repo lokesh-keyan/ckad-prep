@@ -8,10 +8,3 @@ Pods
     - Start only started through a deployment bcoz naked pods are not rescheduled in case of a node failure.
     
     Understanding pods for CKAD is big
-    
-    kubectl run
-    kubectl run myginx --image=nginx
-    kubectl get pods [-o yaml]
-        "-o yaml" option provides insight in all Pod parameters
-    kubectl describe pod <name> | less
-        shows all details about a Pod and containers running within

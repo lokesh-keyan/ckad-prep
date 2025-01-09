@@ -8,5 +8,10 @@ spec: contains the specifics for the object
     args: arguments that are used by the command
     env: environment  variables that should be used by the container
 
-"kubectl explain <pod, deployment>" - to get description on the specified component
-"kubectl explain pod.spec" - to get more detauls on specs
+Excercise on this topic
+- We have busybox.yaml from the repo
+- run it using "kubectl create -f busybox.yaml"
+- then use "kubectl get pods" to see the pods running
+- delete and use apply to create the pods. 
+    create - creates if it does not exist and throws an error if already created
+    apply - creates if does not exist and updates if its already created
