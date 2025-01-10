@@ -1,83 +1,116 @@
-Docker Image:
-The ubuntu:latest image is just a blueprint. By itself, it is not running—it’s a static set of files and metadata.
+# Docker Overview
 
-Docker Container:
-When you create and start a container from the ubuntu:latest image, Docker uses the image as a template and launches a process in an isolated environment (which is a linux OS functionality).
-When we launch docker on windows it launches a lightweight Linux VM to make use of the Linux OS features like namespaces and control groups
+## **Docker Image vs Docker Container**
+- **Docker Image**:  
+  A blueprint (static set of files and metadata) for creating containers. E.g., `ubuntu:latest` image.
+  
+- **Docker Container**:  
+  A running instance created from a Docker image. It is a process running in an isolated environment using the image as a template.  
+  - On Windows, Docker runs a lightweight Linux VM to utilize Linux features like namespaces and control groups.
 
-ENTRYPOINT and CMD:
-Docker images specify default instructions for what to run when a container starts.
-These instructions are set in the image's Dockerfile using the CMD or ENTRYPOINT directives.
+## **ENTRYPOINT and CMD**
+- **ENTRYPOINT**: Specifies the command that should always be executed when the container starts.
+- **CMD**: Specifies default arguments for the entry point command.  
+Both are set in the Dockerfile.
 
-1.3 Starting containers
-sudo mkdir -p /var/www/html
-	-p to create intermediate directories if the don't exist
-	/var/www is typically defacult directory where www files are stored
+---
 
-sudo sh -c "echo hello from docker >> /var/www/html/index.html"
-	-c tells sh that treat following string as command.
-	>> insert text into the file >> adds it to the end if the line, > overwrites.
-	
-docker run -d -p 8080:80 --name="myapache" -v /var/www/html:/var/www/html httpd
-	-d is detached mode
-	-v Volume mount option, mounts a directory from host machine into the container
-	httpd is the image that the container is based on. The index.html runs on the apache server on the localhost:8080
-	
-1.4 Managing containers
+## **Starting Containers**
+- **Create directory**:  
+  `sudo mkdir -p /var/www/html`  
+  - `-p` ensures intermediate directories are created.
+  
+- **Add content to file**:  
+  `sudo sh -c "echo hello from docker >> /var/www/html/index.html"`  
+  - `-c` allows the following string to be treated as a command.  
+  - `>>` appends text to the file, while `>` overwrites.
 
-	docker ps -a
-		-a is for the past containers
-	docker start 
-		starts a container from a locally stored image
-	docker stop
-		stops a container using Linux SIGTERM
-	docker restart
-		restarts a currently running container
-	docker kill
-		stops a container using linux sigkill
-	docker rm
-		removes all container files from the host operating system
-	docker inspect
-		will show whats going on in json format
-			--format allows you to filter out what you want to see
-	ps aux on the host to find container pid
-	
-1.5 Understanding and using containers
-	docker images
-		to gat all images
-	docker images --help 
-		to get help with the images
+- **Run a container**:  
+  `docker run -d -p 8080:80 --name="myapache" -v /var/www/html:/var/www/html httpd`  
+  - `-d` is for detached mode (runs in background).  
+  - `-v` mounts a directory from the host machine into the container.  
+  - The `httpd` image runs an Apache server, serving content on `localhost:8080`.
 
-1.6 Understanding container logs
-	docker logs mycontainer
-		to get access to the container log and convinient for troubleshooting
-		
-Lab 1 solution
-	Run the latest version of Fedora in a container
-		docker run -it --name fedora-container fedora:latest
-			-it is interactive mode
+---
 
-	Start a bash shell and explore /etc/os-release file as well as Kernal version (uname -r)
-		cat /etc/os-release
-		uname -r
-		
-Image Architecture
-	Container image is a tar file with associated metadata
-	It consists of multiple layers
-	We need a base system to build
-	The application is installed as an additional layer
-	Some of the images are already layered
-	
-docker build -t myapp:1.0 . => just builds an image, then use run to run it
-	-t myapp:1.0: Names the image myapp and assigns it the 1.0 tag.
-	.: Specifies the current directory as the build context (it must contain a Dockerfile)
-	
-Lab 2
-create a dockerfile that creatres an image that
-based on fedora, contains the packages containing the ps command as well as network tools and should run the sshd process
+## **Managing Containers**
+- **List all containers**:  
+  `docker ps -a`  
+  - `-a` shows all containers (running and stopped).
+  
+- **Start a container**:  
+  `docker start <container_name>`
+  
+- **Stop a container**:  
+  `docker stop <container_name>`  
+  - Sends SIGTERM to stop the container.
 
-docker build -t fedora-sshd .
-docker run -d -p 2222:22 --name my-fedora-sshd fedora-sshd
-ssh root@localhost -p 2222
+- **Restart a container**:  
+  `docker restart <container_name>`
+
+- **Kill a container**:  
+  `docker kill <container_name>`  
+  - Sends SIGKILL to force stop the container.
+
+- **Remove a container**:  
+  `docker rm <container_name>`  
+  - Removes container files from the host.
+
+- **Inspect a container**:  
+  `docker inspect <container_name>`  
+  - Shows detailed container information in JSON format.
+
+- **Find container PID**:  
+  `ps aux` on the host to find the container's PID.
+
+---
+
+## **Understanding and Using Containers**
+- **List all images**:  
+  `docker images`
+
+- **Get help with images**:  
+  `docker images --help`
+
+---
+
+## **Container Logs**
+- **View container logs**:  
+  `docker logs <container_name>`  
+  - Useful for troubleshooting container issues.
+
+---
+
+## **Lab 1 Solution**
+- **Run Fedora container**:  
+  `docker run -it --name fedora-container fedora:latest`  
+  - `-it` allows interactive mode.
+  
+- **Explore container**:  
+  ```bash
+  cat /etc/os-release
+  uname -r
+
+# Docker Image Architecture
+
+A container image is a tar file that contains multiple layers, along with associated metadata.
+
+## **Layers in a Container Image:**
+1. **Base System**: The first layer, which forms the foundation of the image.
+2. **Application Layers**: Follow the base system layer, which includes the application or software.
+3. **Pre-layered Images**: Some images are pre-layered, meaning that they come with base and application layers already built.
+
+---
+
+## **Build a Docker Image**
+
+To build an image, use the following command:
+
+```bash
+docker build -t myapp:1.0 .
+-t: Tags the image with a name and version (myapp:1.0).
+.: Specifies the current directory as the build context (it must contain a Dockerfile).
+
+---
 
 
