@@ -1,4 +1,4 @@
-Pods
+# Pods
     - An abstraction of a server
     - Can run multiple containers within a single namespace, exposed by a single IP address
     - A pod is not a Linux construct itself but a Kubernetes abstraction that orchestrates containers.
