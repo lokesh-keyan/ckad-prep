@@ -24,5 +24,5 @@ Welcome to my curated notes for the **Certified Kubernetes Application Developer
 - Clone the repo and take notes alongside your learning.
 
 ```bash
-git clone https://github.com/<your-username>/ckad-prep.git
+git clone https://github.com/lokesh-keyan/ckad-prep.git
 cd ckad-prep
