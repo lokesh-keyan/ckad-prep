@@ -11,7 +11,7 @@ In Kubernetes, the lifecycle of a pod involves several key components working to
 4. **Containers**: Begin running inside the Pod on the node.
 
 ### Visual Diagram:
-![Kubernetes Pod Lifecycle](pod_lifecycle.png)
+![Kubernetes Pod Lifecycle](images/pod_lifecycle.png)
 
 ---
 

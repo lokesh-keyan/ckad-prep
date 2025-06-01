@@ -16,4 +16,4 @@ When you install Kubernetes, you get all this:
 - **Kubelet**: Is the agent runs on each node in the cluster. Responsible for making sure that the containers are running on the nodes as expected.
 
 ### Visual Diagram:
-![Kubernetes Pod Lifecycle](architecture.png)
+![Kubernetes Pod Lifecycle](images/architecture.png)
