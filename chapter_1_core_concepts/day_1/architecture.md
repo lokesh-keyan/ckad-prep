@@ -14,3 +14,6 @@ When you install Kubernetes, you get all this:
 - **Scheduler**: Scheduler is responsible for distributing work or containers across multiple nodes it looks for newly created containers and assigns them to nodes.
 - **Controllers**: Brain behind the orchestration. They are resposible for noticing and responding when nodes, containers or end points goes down. They make decisions to bring up new containers in such cases. The container runtime is the underlying software that is used to run the containers.
 - **Kubelet**: Is the agent runs on each node in the cluster. Responsible for making sure that the containers are running on the nodes as expected.
+
+### Visual Diagram:
+![Kubernetes Pod Lifecycle](architecture.png)
