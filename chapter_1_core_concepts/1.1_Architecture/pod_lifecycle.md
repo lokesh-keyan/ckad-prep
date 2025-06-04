@@ -40,15 +40,3 @@ Containers are the actual instances of your application running inside the pod. 
 | **Kubelet**       | Runs containers on assigned node         | ✅ Yes              |
 
 ---
-
-## Author
-
-**Lokesh Keyan**  
-Senior Software Engineer | Kubernetes Enthusiast  
-📍 Atlanta
-
----
-
-## License
-
-This project is licensed under the MIT License.
