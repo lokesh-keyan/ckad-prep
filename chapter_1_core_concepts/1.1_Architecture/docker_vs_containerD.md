@@ -9,31 +9,26 @@ Docker was originally both a container runtime and an image builder, providing a
 | Kubernetes Use  | Deprecated (via dockershim) | Native CRI support        |
 | Standards       | Docker-specific, now OCI-compliant | OCI-compliant           |
 
----
 
 ## CRI (Container Runtime Interface)
 
 The **Container Runtime Interface (CRI)** is a standard API defined by Kubernetes. It allows different container runtimes to integrate with the kubelet (the Kubernetes node agent). CRI abstracts the details of the underlying container runtime, enabling Kubernetes to support multiple runtimes interchangeably.
 
----
 
 ## Dockershim
 
 **Dockershim** was a component in Kubernetes that acted as a bridge between the CRI and the Docker runtime. It allowed Kubernetes to use Docker as its container runtime. As of Kubernetes 1.24, dockershim has been deprecated and removed, encouraging users to migrate to CRI-compatible runtimes like containerd or CRI-O.
 
----
 
 ## OCI (Open Container Initiative)
 
 The **Open Container Initiative (OCI)** is an open governance structure for creating industry standards around container formats and runtimes. OCI defines specifications for container images and runtimes, ensuring interoperability between different tools and platforms in the container ecosystem.
 
----
 
 ## runc
 
 **runc** is a lightweight, portable container runtime that implements the OCI runtime specification. It is responsible for creating and running containers according to the OCI standard. Many higher-level container runtimes, such as Docker and containerd, use runc under the hood to handle the low-level details of container lifecycle management. By adhering to the OCI specification, runc ensures compatibility and interoperability across different container platforms.
 
----
 
 ## ctr - Debugging tool
 
