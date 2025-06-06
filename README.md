@@ -6,14 +6,14 @@ Welcome to my curated notes for the **Certified Kubernetes Application Developer
 
 ## 📚 Topics Covered
 
-- ✅ Core Concepts
-- ✅ Pod Design
-- ✅ Configuration
-- ✅ Multi-Container Pods
-- ✅ Observability
-- ✅ Services & Networking
-- ✅ State Persistence
-- ✅ Jobs & CronJobs
+- Core Concepts
+- Pod Design
+- Configuration
+- Multi-Container Pods
+- Observability
+- Services & Networking
+- State Persistence
+- Jobs & CronJobs
 
 ---
 
