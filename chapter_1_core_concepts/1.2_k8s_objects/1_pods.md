@@ -106,6 +106,7 @@ kubectl get pods --all-namespaces
 ```bash
 kubectl get pods --all-namespaces
 ```
+
 - This command shows detailed information about the Pod named my-pod. Think of it as an in-depth diagnostic report directly from the Kubernetes control plane. You will see the below:
 - Name, Namespace, Node
 - Labels and Annotations
