@@ -1,0 +1,22 @@
+apiVersion: apps/v1 #different from ReplicationController
+kind: ReplicaSet #different from ReplicationController
+metadata:
+  name: my-rs
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  replicas: 3
+  selector: # required for ReplicaSet
+    matchLabels:
+      app: my-app
+  # below is from pod-definition.yaml
+  template:
+    metadata:
+      name: my-pod
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:latest
