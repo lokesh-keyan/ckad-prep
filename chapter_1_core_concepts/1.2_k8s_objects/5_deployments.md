@@ -67,3 +67,14 @@ While both ReplicaSet and Deployment are used to manage Pods in Kubernetes, they
 **Summary:**
 - Use **ReplicaSet** if you only need to maintain a stable set of identical Pods without advanced update strategies.
 - Use **Deployment** for most use cases, as it provides advanced features like rolling updates, rollbacks, and easier management of application lifecycle.
+
+## Tips and tricks
+Generate Deployment YAML file (-o yaml). Don’t create it(–dry-run)
+```sh
+kubectl create deployment --image=nginx nginx --dry-run -o yaml
+```
+
+Another way to do this is to save the YAML definition to a file and modify
+```sh
+kubectl create deployment nginx --image=nginx--dry-run=client -o yaml > nginx-deployment.yaml
+```

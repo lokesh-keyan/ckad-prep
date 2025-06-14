@@ -57,3 +57,7 @@
   - Keep your workspace and notes tidy to avoid confusion during the exam.
 
 --- 
+
+References
+https://kubernetes.io/docs/reference/kubectl/quick-reference/
+https://kubernetes.io/docs/reference/kubectl/

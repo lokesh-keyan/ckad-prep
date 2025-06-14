@@ -113,3 +113,16 @@ kubectl get pods --all-namespaces
 - Status and Conditions
 - Containers
 - Events
+
+
+## Tips and Tricks
+Generate POD Manifest YAML file (-o yaml). Don’t create it(–dry-run)
+
+```sh
+kubectl run nginx --image=nginx --dry-run=client -o yaml
+```
+
+Probably the most common format used to print additional details about the object:
+```sh
+kubectl get pods -o wide
+```
