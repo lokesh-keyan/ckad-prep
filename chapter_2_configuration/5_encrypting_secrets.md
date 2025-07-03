@@ -1,8 +1,25 @@
-https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/
+# Encrypting Secrets in Kubernetes
 
+> Reference: [Kubernetes Documentation - Encrypt Data](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/)
+
+## Understanding Secret Storage in etcd
+
+Let's explore how Kubernetes Secrets are stored in the etcd database and how to encrypt them at rest.
+
+### Creating a Test Secret
+
+```sh
 kubectl create secret generic my-secret --from-literal=key1=supersecret
+```
 
-controlplane ~ ➜  k get secret my-secret -o yaml
+### Viewing the Secret
+
+```sh
+kubectl get secret my-secret -o yaml
+```
+
+**Output:**
+```yaml
 apiVersion: v1
 data:
   key1: c3VwZXJzZWNyZXQ=
@@ -14,61 +31,63 @@ metadata:
   resourceVersion: "1892"
   uid: f9530a2f-eca6-40c1-92c1-2d9adec95e02
 type: Opaque
+```
 
+### Decoding the Base64 Value
+
+```sh
 echo "c3VwZXJzZWNyZXQ=" | base64 --decode
-supersecret
+# Output: supersecret
+```
 
-We are going to focus how this data us stored in etcd server?
+---
 
-Follow below steps to install etcdctl in playground or vm
-To install the etcdctl client on a system that uses apt (like Ubuntu or Debian), follow these steps:
+## Installing etcdctl
 
-✅ Step-by-step: Install etcdctl
-etcdctl is part of the etcd package — but not available via apt directly. You'll need to download the binary.
+To examine how data is stored in etcd server, we need to install the `etcdctl` client.
 
-1. Download the latest etcd release
-bash
-Copy
-Edit
+> **Note:** `etcdctl` is part of the etcd package but not available via apt directly. You'll need to download the binary.
+
+### Step-by-Step Installation
+
+**1. Download the latest etcd release:**
+```sh
 ETCD_VER=v3.5.12
-
 curl -L https://github.com/etcd-io/etcd/releases/download/${ETCD_VER}/etcd-${ETCD_VER}-linux-amd64.tar.gz -o etcd.tar.gz
-2. Extract the tarball
-bash
-Copy
-Edit
+```
+
+**2. Extract the tarball:**
+```sh
 tar xzvf etcd.tar.gz
 cd etcd-${ETCD_VER}-linux-amd64
-3. Move the binaries to /usr/local/bin
-bash
-Copy
-Edit
+```
+
+**3. Move the binaries to `/usr/local/bin`:**
+```sh
 sudo mv etcdctl /usr/local/bin/
-Optional: you can also move etcd if you're running an etcd server locally.
+```
+> Optional: You can also move `etcd` if you're running an etcd server locally.
 
-🧪 Confirm it's working
-bash
-Copy
-Edit
+**4. Confirm it's working:**
+```sh
 etcdctl version
-You should see something like:
+```
 
-bash
-Copy
-Edit
+**Expected output:**
+```sh
 etcdctl version: 3.5.12
 API version: 3.5
+```
 
-etcdctl is for cluster administrators who:
+---
 
-Run their own Kubernetes clusters (e.g., using kubeadm, bare metal, or on cloud VMs),
+## Who Uses etcdctl?
 
-Manage their own etcd (the Kubernetes backing store),
+`etcdctl` is primarily for cluster administrators who:
 
-Want to directly interact with etcd for:
-
-Taking backups
-
-Restoring from disaster
-
-Inspecting or debugging cluster state at a low level
+- **Run their own Kubernetes clusters** (e.g., using kubeadm, bare metal, or on cloud VMs)
+- **Manage their own etcd** (the Kubernetes backing store)
+- **Want to directly interact with etcd** for:
+  - Taking backups
+  - Restoring from disaster
+  - Inspecting or debugging cluster state at a low level
