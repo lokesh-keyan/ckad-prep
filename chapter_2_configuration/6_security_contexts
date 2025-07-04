@@ -51,3 +51,8 @@ This example illustrates how to configure user permissions and capabilities in K
 - **Configuring** security contexts at Pod and container levels
 - **Troubleshooting** security context issues using this configuration
 
+We can define a set of securoty standands
+- Containers are encapsulated in pods
+- We can choose to confire it in pod level or container level
+- The container level will override the settings in pod
+- it is as simple as keeping the security context key in the pod yaml in pod level vs inside the container level
