@@ -56,3 +56,6 @@ We can define a set of securoty standands
 - We can choose to confire it in pod level or container level
 - The container level will override the settings in pod
 - it is as simple as keeping the security context key in the pod yaml in pod level vs inside the container level
+
+Most ideal set up
+Set requests with no limits so all pods gets its own cpu and the other pods can take how much ever cpu they want without affecting the minimum required by another pod
