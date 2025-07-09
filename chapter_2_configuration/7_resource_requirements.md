@@ -89,3 +89,54 @@ When a pod tries to exceed its CPU limit, the system **throttles** the CPU so it
 2. **Set limits** to prevent resource hogging
 3. **Monitor** your applications to tune requests and limits appropriately
 4. **Test** in staging environments to find optimal values
+
+## Behavior - CPU and memory
+- It is best to requests and not limits for all pods so that every pod has some CPU assigned even though they are not running
+
+
+## Limit Range object
+
+```yaml
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: cpu-resource-constraint
+spec:
+  limits:
+  - type: Container
+    default: 
+      cpu: "500m"
+    defaultRequest:
+      cpu: "500m"
+    max:
+      cpu: "1"
+    min:
+      cpu: "100m"
+
+# limit-range-memory.yaml
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: memory-resource-constraint
+spec:
+  limits:
+  - type: Container
+    default:
+      memory: "1Gi"
+    defaultRequest:
+      memory: "1Gi"
+    max:
+      memory: "1Gi"
+    min:
+      memory: "500Mi"
+```
+
+## ResourceQuotas
+
+- To control the overall resource usage within a namespace, you can implement ResourceQuotas. A ResourceQuota object sets hard limits on the total CPU and memory consumption (both requested and actual usage) across all pods in the namespace.
+
+- For example, a ResourceQuota might restrict the namespace to a total of 4 CPUs and 4 Gi of memory in requests while enforcing a maximum usage of 10 CPUs and 10 Gi of memory across all pods. This mechanism is essential for preventing uncontrolled resource consumption in multi-tenant environments.
+
+## References
+
+https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/
