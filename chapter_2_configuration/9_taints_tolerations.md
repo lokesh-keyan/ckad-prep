@@ -111,3 +111,13 @@ spec:
 - Tolerations allow pods to be scheduled on tainted nodes
 - Use taints to dedicate nodes for specific workloads
 - NoExecute effect can evict existing pods that don't tolerate the taint
+
+
+Kubernetes matches tolerations and taints strictly by effect.
+
+If a pod has a toleration with the wrong effect, it won’t work.
+
+You can add multiple tolerations to a pod to handle multiple taints.
+
+## To remove a taint
+kubectl taint nodes node01 env:NoSchedule-
