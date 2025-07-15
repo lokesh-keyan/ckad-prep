@@ -57,6 +57,9 @@
   - Keep your workspace and notes tidy to avoid confusion during the exam.
 
 --- 
+https://medium.com/@harioverhere/ckad-certified-kubernetes-application-developer-my-journey-3afb0901014
+If you are from windows background, then get some understanding on volume mounts, ssh, linux file systems
+Read the instructions given before the start of the exam on how to copy and paste from kubernetes.io documentation into the shell.
 
 References
 https://kubernetes.io/docs/reference/kubectl/quick-reference/
