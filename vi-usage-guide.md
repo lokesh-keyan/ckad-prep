@@ -53,3 +53,43 @@ If you accidentally enter the wrong mode:
 
 - Press `Esc` to return to command mode.
 - Then type the command you need (like `:wq` to save and quit).
+
+---
+
+## 🔧 Advanced Editing Techniques
+
+### Indent and Unindent
+
+**In Visual Mode:**
+1. Select lines with `V` and move up/down with arrow keys
+2. Press `>` to indent, `<` to unindent
+3. You can press `.` to repeat the last indent/unindent operation
+
+---
+
+## 🗑️ Delete All Content and Replace
+
+### ✅ Option 1: Delete All Lines
+
+Press the following in normal mode (press `Esc` to be sure you're not in insert mode):
+
+```
+gg    # move to the beginning of the file
+dG    # delete from current line to the end of file
+```
+
+### ✅ Option 2: Select and Delete All
+
+Alternatively:
+
+```
+ggVG  # visually select the whole file
+d     # delete selected content
+```
+
+### 📝 Then Paste New Content
+
+1. Press `i` to enter insert mode
+2. Paste your content (e.g., `Ctrl+Shift+V` in terminal)
+3. Press `Esc` to exit insert mode
+4. Type `:wq` to save and quit
