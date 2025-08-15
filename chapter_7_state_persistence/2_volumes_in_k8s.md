@@ -17,6 +17,23 @@ spec:
       args: ["shuf -i 0-100 -n 1 >> /opt/number.out;"]
 ```
 
+## Persistent Volume
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-log
+spec:
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /pv/log
+```
+
 To retain the generated number, we attach a volume that leverages host storage. In this example, the host directory `/data` is used as the storage backend. When the volume is mounted inside the container at `/opt`, any file written there will be persisted on the host, even after the Pod is removed.
 
 Below is the updated Pod specification with the volume properly configured:
