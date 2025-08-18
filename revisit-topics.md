@@ -1,1 +1,3 @@
 Ingress networking
+Storage class
+Statefulsets
