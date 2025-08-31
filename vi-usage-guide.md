@@ -86,10 +86,3 @@ Alternatively:
 ggVG  # visually select the whole file
 d     # delete selected content
 ```
-
-### 📝 Then Paste New Content
-
-1. Press `i` to enter insert mode
-2. Paste your content (e.g., `Ctrl+Shift+V` in terminal)
-3. Press `Esc` to exit insert mode
-4. Type `:wq` to save and quit
