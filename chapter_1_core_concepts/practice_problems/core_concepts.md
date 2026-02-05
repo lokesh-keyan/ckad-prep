@@ -83,3 +83,22 @@ kubectl run busybox --image=busybox
 
 # Perfect for debugging
 ```
+</p>
+</details>
+
+### Create the YAML for a new ResourceQuota called 'myrq' with hard limits of 1 CPU, 1G memory and 2 pods without creating it
+
+<details><summary>show</summary>
+<p>
+
+```bash
+kubectl create quota myrq --hard=cpu=1,memory=1G,pods=2 --dry-run=client -o yaml
+```
+<!-- Resource	Limit	Meaning
+cpu=1	1 CPU core total	All pods combined can request max 1 CPU
+memory=1G	1 gigabyte RAM	All pods combined can request max 1GB memory
+pods=2	2 pods max	Namespace can have only 2 pods total -->
+<!-- This is applied to default namesapce and applied only to namespaces. You have to explicitly mention the  namesapce if you want it applied to your namesapce -->
+<!-- Only hard keyword is used, no other keywords, but used can be seen as status from k8s itself, you do not mention this -->
+</p>
+</details>
